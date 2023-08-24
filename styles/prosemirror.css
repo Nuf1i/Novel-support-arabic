@@ -1,13 +1,14 @@
 .ProseMirror .is-editor-empty:first-child::before {
   content: attr(data-placeholder);
-  float: left;
+  float: right;
   color: var(--novel-stone-400);
   pointer-events: none;
   height: 0;
 }
+
 .ProseMirror .is-empty::before {
   content: attr(data-placeholder);
-  float: left;
+  float: right;
   color: var(--novel-stone-400);
   pointer-events: none;
   height: 0;
@@ -37,7 +38,7 @@
     box-sizing: border-box;
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 50%;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -55,18 +56,18 @@
 
 /* Custom TODO list checkboxes – shoutout to this awesome tutorial: https://moderncss.dev/pure-css-custom-checkbox-style/ */
 
-ul[data-type="taskList"] li > label {
+ul[data-type="taskList"] li>label {
   margin-right: 0.2rem;
   user-select: none;
 }
 
 @media screen and (max-width: 768px) {
-  ul[data-type="taskList"] li > label {
+  ul[data-type="taskList"] li>label {
     margin-right: 0.5rem;
   }
 }
 
-ul[data-type="taskList"] li > label input[type="checkbox"] {
+ul[data-type="taskList"] li>label input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--novel-white);
@@ -105,7 +106,7 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
   }
 }
 
-ul[data-type="taskList"] li[data-checked="true"] > div > p {
+ul[data-type="taskList"] li[data-checked="true"]>div>p {
   color: var(--novel-stone-400);
   text-decoration: line-through;
   text-decoration-thickness: 2px;
@@ -115,4 +116,25 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
 
 .tippy-box {
   max-width: 400px !important;
+}
+
+
+.ProseMirror p[dir="rtl"],
+.ProseMirror h1[dir="rtl"],
+.ProseMirror h2[dir="rtl"],
+.ProseMirror h3[dir="rtl"],
+.ProseMirror h4[dir="rtl"],
+.ProseMirror h5[dir="rtl"],
+.ProseMirror h6[dir="rtl"] {
+  text-align: right;
+}
+
+.ProseMirror p[dir="ltr"],
+.ProseMirror h1[dir="ltr"],
+.ProseMirror h2[dir="ltr"],
+.ProseMirror h3[dir="ltr"],
+.ProseMirror h4[dir="ltr"],
+.ProseMirror h5[dir="ltr"],
+.ProseMirror h6[dir="ltr"] {
+  text-align: left;
 }

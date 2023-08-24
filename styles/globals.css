@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.html {
+  direction: rtl;
+}
+
 :root {
   --novel-black: rgb(0 0 0);
   --novel-white: rgb(255 255 255);
@@ -28,8 +32,8 @@
 }
 
 .dark-theme {
-  --novel-black: rgb(255 255 255);
-  --novel-white: rgb(25 25 25);
+  --novel-black: #1b253d;
+  --novel-white: #1b253d;
   --novel-stone-50: rgb(35 35 34);
   --novel-stone-100: rgb(41 37 36);
   --novel-stone-200: rgb(66 69 71);
@@ -52,6 +56,10 @@
   --novel-highlight-gray: #3a3a3a;
 }
 
+html {
+  direction: rtl;
+}
+
 body {
-  background-color: var(--novel-white);
+  background-color: black;
 }

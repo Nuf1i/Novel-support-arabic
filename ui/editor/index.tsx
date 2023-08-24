@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import { TiptapEditorProps } from "./props";
 import { TiptapExtensions } from "./extensions";
+import TextDirection from "tiptap-text-direction";
 import useLocalStorage from "@/lib/hooks/use-local-storage";
 import { useDebouncedCallback } from "use-debounce";
 import { useCompletion } from "ai/react";
@@ -34,7 +35,13 @@ export default function Editor() {
   }, 750);
 
   const editor = useEditor({
-    extensions: TiptapExtensions,
+    extensions: [
+      ...TiptapExtensions,
+      TextDirection.configure({
+        defaultDirection: "ltr",
+        types: ["heading", "paragraph"],
+      }),
+    ],
     editorProps: TiptapEditorProps,
     onUpdate: (e) => {
       setSaveStatus("Unsaved");
@@ -136,9 +143,12 @@ export default function Editor() {
       onClick={() => {
         editor?.chain().focus().run();
       }}
+      style={{
+        direction: "ltr"
+      }}
       className="relative min-h-[500px] w-full max-w-screen-lg border-stone-200 bg-white p-12 px-8 sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:px-12 sm:shadow-lg"
     >
-      <div className="absolute right-5 top-5 mb-5 rounded-lg bg-stone-100 px-2 py-1 text-sm text-stone-400">
+      <div className="absolute px-2 py-1 mb-5 text-sm rounded-lg right-5 top-5 bg-stone-100 text-stone-400">
         {saveStatus}
       </div>
       {editor && <EditorBubbleMenu editor={editor} />}

@@ -101,11 +101,11 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
   return (
     <div className="relative h-full">
       <button
-        className="flex h-full items-center gap-1 whitespace-nowrap p-2 text-sm font-medium text-stone-600 hover:bg-stone-100 active:bg-stone-200"
+        className="flex items-center h-full gap-1 p-2 text-sm font-medium whitespace-nowrap text-stone-600 hover:bg-stone-100 active:bg-stone-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{activeItem?.name}</span>
-        <ChevronDown className="h-4 w-4" />
+        <ChevronDown className="w-4 h-4" />
       </button>
 
       {isOpen && (
@@ -117,15 +117,15 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
                 item.command();
                 setIsOpen(false);
               }}
-              className="flex items-center justify-between rounded-sm px-2 py-1 text-sm text-stone-600 hover:bg-stone-100"
+              className="flex items-center justify-between px-2 py-1 text-sm rounded-sm text-stone-600 hover:bg-stone-100"
             >
               <div className="flex items-center space-x-2">
-                <div className="rounded-sm border border-stone-200 p-1">
-                  <item.icon className="h-3 w-3" />
+                <div className="p-1 border rounded-sm border-stone-200">
+                  <item.icon className="w-3 h-3" />
                 </div>
                 <span>{item.name}</span>
               </div>
-              {activeItem.name === item.name && <Check className="h-4 w-4" />}
+              {activeItem.name === item.name && <Check className="w-4 h-4" />}
             </button>
           ))}
         </section>
