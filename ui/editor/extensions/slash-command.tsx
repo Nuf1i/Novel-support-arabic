@@ -9,7 +9,7 @@ import React, {
 import { Editor, Range, Extension } from "@tiptap/core";
 import Suggestion from "@tiptap/suggestion";
 import { ReactRenderer } from "@tiptap/react";
-import { useCompletion } from "ai/react";
+// import { useCompletion } from "ai/react";
 import tippy from "tippy.js";
 import {
   Heading1,
@@ -17,18 +17,18 @@ import {
   Heading3,
   List,
   ListOrdered,
-  MessageSquarePlus,
+  // MessageSquarePlus,
   Text,
   TextQuote,
   Image as ImageIcon,
   Code,
   CheckSquare,
 } from "lucide-react";
-import LoadingCircle from "@/ui/icons/loading-circle";
-import { toast } from "sonner";
+// import LoadingCircle from "@/ui/icons/loading-circle";
+// import { toast } from "sonner";
 import va from "@vercel/analytics";
-import Magic from "@/ui/icons/magic";
-import { getPrevText } from "@/lib/editor";
+// import Magic from "@/ui/icons/magic";
+// import { getPrevText } from "@/lib/editor";
 import { startImageUpload } from "@/ui/editor/plugins/upload-images";
 
 interface CommandItemProps {
@@ -74,24 +74,15 @@ const Command = Extension.create({
 
 const getSuggestionItems = ({ query }: { query: string }) => {
   return [
+    // {
+    //   title: "Continue writing",
+    //   description: "Use AI to expand your thoughts.",
+    //   searchTerms: ["gpt"],
+    //   icon: <Magic className="w-7" />,
+    // },
     {
-      title: "Continue writing",
-      description: "Use AI to expand your thoughts.",
-      searchTerms: ["gpt"],
-      icon: <Magic className="w-7" />,
-    },
-    {
-      title: "Send Feedback",
-      description: "Let us know how we can improve.",
-      icon: <MessageSquarePlus size={18} />,
-      command: ({ editor, range }: CommandProps) => {
-        editor.chain().focus().deleteRange(range).run();
-        window.open("/feedback", "_blank");
-      },
-    },
-    {
-      title: "Text",
-      description: "Just start typing with plain text.",
+      title: "نص",
+      description: "نص حجم طبيعي",
       searchTerms: ["p", "paragraph"],
       icon: <Text size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -104,8 +95,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "To-do List",
-      description: "Track tasks with a to-do list.",
+      title: "قائمة المهام",
+      description: "قائمة اوامر المهام مع قابلية الانهاء",
       searchTerms: ["todo", "task", "list", "check", "checkbox"],
       icon: <CheckSquare size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -113,8 +104,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Heading 1",
-      description: "Big section heading.",
+      title: "عنوان رئيسي 1",
+      description: "عنوان رئيسي كبير الحجم",
       searchTerms: ["title", "big", "large"],
       icon: <Heading1 size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -127,8 +118,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Heading 2",
-      description: "Medium section heading.",
+      title: "عنوان رئيسي 2",
+      description: "عنوان رئيسي متوسط الحجم",
       searchTerms: ["subtitle", "medium"],
       icon: <Heading2 size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -141,8 +132,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Heading 3",
-      description: "Small section heading.",
+      title: "عنوان رئيسي 3",
+      description: "عنوان رئيسي صغير الحجم",
       searchTerms: ["subtitle", "small"],
       icon: <Heading3 size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -155,8 +146,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Bullet List",
-      description: "Create a simple bullet list.",
+      title: "قائمة النقاط",
+      description: "قائمة نقاط بسيطة",
       searchTerms: ["unordered", "point"],
       icon: <List size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -164,8 +155,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Numbered List",
-      description: "Create a list with numbering.",
+      title: "قائمة الارقام",
+      description: "قائمة ارقام رقمية",
       searchTerms: ["ordered"],
       icon: <ListOrdered size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -173,8 +164,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
-      title: "Quote",
-      description: "Capture a quote.",
+      title: "اقتباس",
+      description: "اقتباس نصي",
       searchTerms: ["blockquote"],
       icon: <TextQuote size={18} />,
       command: ({ editor, range }: CommandProps) =>
@@ -187,16 +178,16 @@ const getSuggestionItems = ({ query }: { query: string }) => {
           .run(),
     },
     {
-      title: "Code",
-      description: "Capture a code snippet.",
+      title: "مربع اكواد",
+      description: "مربع محرر الاكواد",
       searchTerms: ["codeblock"],
       icon: <Code size={18} />,
       command: ({ editor, range }: CommandProps) =>
         editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
     },
     {
-      title: "Image",
-      description: "Upload an image from your computer.",
+      title: "صورة",
+      description: "ارفع صورة من الجهاز",
       searchTerms: ["photo", "picture", "media"],
       icon: <ImageIcon size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -246,8 +237,8 @@ export const updateScrollView = (container: HTMLElement, item: HTMLElement) => {
 const CommandList = ({
   items,
   command,
-  editor,
-  range,
+  // editor,
+  // range,
 }: {
   items: CommandItemProps[];
   command: any;
@@ -256,49 +247,40 @@ const CommandList = ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const { complete, isLoading } = useCompletion({
-    id: "novel",
-    api: "/api/generate",
-    onResponse: (response) => {
-      if (response.status === 429) {
-        toast.error("You have reached your request limit for the day.");
-        va.track("Rate Limit Reached");
-        return;
-      }
-      editor.chain().focus().deleteRange(range).run();
-    },
-    onFinish: (_prompt, completion) => {
-      // highlight the generated text
-      editor.commands.setTextSelection({
-        from: range.from,
-        to: range.from + completion.length,
-      });
-    },
-    onError: () => {
-      toast.error("Something went wrong.");
-    },
-  });
+  // const { complete, isLoading } = useCompletion({
+  //   id: "novel",
+  //   api: "/api/generate",
+  //   onResponse: (response) => {
+  //     if (response.status === 429) {
+  //       toast.error("You have reached your request limit for the day.");
+  //       va.track("Rate Limit Reached");
+  //       return;
+  //     }
+  //     editor.chain().focus().deleteRange(range).run();
+  //   },
+  //   onFinish: (_prompt, completion) => {
+  //     // highlight the generated text
+  //     editor.commands.setTextSelection({
+  //       from: range.from,
+  //       to: range.from + completion.length,
+  //     });
+  //   },
+  //   onError: () => {
+  //     toast.error("Something went wrong.");
+  //   },
+  // });
 
   const selectItem = useCallback(
     (index: number) => {
       const item = items[index];
-      va.track("Slash Command Used", {
+      va.track("/ استخدام الاوامر من خلال", {
         command: item.title,
       });
       if (item) {
-        if (item.title === "Continue writing") {
-          complete(
-            getPrevText(editor, {
-              chars: 5000,
-              offset: 1,
-            }),
-          );
-        } else {
-          command(item);
-        }
+        command(item);
       }
     },
-    [complete, command, editor, items],
+    [command, items],
   );
 
   useEffect(() => {
@@ -344,25 +326,25 @@ const CommandList = ({
   return items.length > 0 ? (
     <div
       id="slash-command"
+      style={{
+        direction: "rtl"
+      }}
       ref={commandListContainer}
-      className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto rounded-md border border-stone-200 bg-white px-1 py-2 shadow-md transition-all"
+      className="z-50 h-auto max-h-[330px] w-72 lg:-translate-x-72 overflow-y-auto rounded-md border border-stone-200 bg-white px-1 py-2 shadow-md transition-all"
     >
       {items.map((item: CommandItemProps, index: number) => {
         return (
           <button
-            className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm text-stone-900 hover:bg-stone-100 ${
-              index === selectedIndex ? "bg-stone-100 text-stone-900" : ""
-            }`}
+            className={`flex w-full items-center gap-x-2 rounded-md px-2 py-1 text-right text-sm text-stone-900 hover:bg-stone-100 ${index === selectedIndex ? "bg-stone-100 text-stone-900" : ""
+              }`}
             key={index}
             onClick={() => selectItem(index)}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-md border border-stone-200 bg-white">
-              {item.title === "Continue writing" && isLoading ? (
-                <LoadingCircle />
-              ) : (
-                item.icon
-              )}
+
+            <div className="flex items-center justify-center w-10 h-10 bg-white border rounded-md border-stone-200">
+              {item.icon}
             </div>
+
             <div>
               <p className="font-medium">{item.title}</p>
               <p className="text-xs text-stone-500">{item.description}</p>

@@ -14,6 +14,8 @@ import SlashCommand from "./slash-command";
 import { InputRule } from "@tiptap/core";
 import UploadImagesPlugin from "@/ui/editor/plugins/upload-images";
 import UpdatedImage from "./updated-image";
+import TextDirection from "tiptap-text-direction";
+
 
 const CustomImage = TiptapImage.extend({
   addProseMirrorPlugins() {
@@ -25,7 +27,7 @@ export const TiptapExtensions = [
   StarterKit.configure({
     bulletList: {
       HTMLAttributes: {
-        class: "list-disc list-outside leading-3 -mt-2",
+        class: "list-disc [&>p]:mx-2 list-outside leading-3 -mt-2",
       },
     },
     orderedList: {
@@ -40,7 +42,7 @@ export const TiptapExtensions = [
     },
     blockquote: {
       HTMLAttributes: {
-        class: "border-l-4 border-stone-700",
+        class: "border-r-4 [&>p]:mx-2 [&>p]:my-0.5 border-stone-700",
       },
     },
     codeBlock: {
@@ -95,6 +97,10 @@ export const TiptapExtensions = [
         "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
     },
   }),
+  TextDirection.configure({
+    defaultDirection: "auto",
+    types: ["heading", "paragraph", "taskItem", "bulletList", "orderedList", "blockquote", "codeBlock", "todo", "task", "list", "check", "checkbox"],
+  }),
   CustomImage.configure({
     allowBase64: true,
     HTMLAttributes: {
@@ -109,7 +115,7 @@ export const TiptapExtensions = [
   Placeholder.configure({
     placeholder: ({ node }) => {
       if (node.type.name === "heading") {
-        return `Heading ${node.attrs.level}`;
+        return `عنوان رئيسي ${node.attrs.level}`;
       }
       return "اضغط / لفتح اوامر الكتابة";
     },
@@ -124,12 +130,12 @@ export const TiptapExtensions = [
   }),
   TaskList.configure({
     HTMLAttributes: {
-      class: "not-prose pl-2",
+      class: "not-prose p-2",
     },
   }),
   TaskItem.configure({
     HTMLAttributes: {
-      class: "flex items-start my-4",
+      class: "flex gap-x-2 items-start my-4",
     },
     nested: true,
   }),

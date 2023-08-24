@@ -33,9 +33,9 @@
 
 .dark-theme {
   --novel-black: #1b253d;
-  --novel-white: #1b253d;
+  --novel-white: #111827;
   --novel-stone-50: rgb(35 35 34);
-  --novel-stone-100: rgb(41 37 36);
+  --novel-stone-100: #273240;
   --novel-stone-200: rgb(66 69 71);
   --novel-stone-300: rgb(112 118 123);
   --novel-stone-400: rgb(160 167 173);
@@ -56,9 +56,10 @@
   --novel-highlight-gray: #3a3a3a;
 }
 
+/* 
 html {
   direction: rtl;
-}
+} */
 
 body {
   background-color: black;

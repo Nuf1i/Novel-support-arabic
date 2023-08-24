@@ -29,14 +29,14 @@ export const LinkSelector: FC<LinkSelectorProps> = ({
           setIsOpen(!isOpen);
         }}
       >
-        <p className="text-base">↗</p>
         <p
           className={cn("underline decoration-stone-400 underline-offset-4", {
-            "text-blue-500": editor.isActive("link"),
+            "text-indigo-600": editor.isActive("link"),
           })}
         >
-          Link
+          رابط
         </p>
+        <p className="text-base">↗</p>
       </button>
       {isOpen && (
         <form
@@ -52,23 +52,23 @@ export const LinkSelector: FC<LinkSelectorProps> = ({
           <input
             ref={inputRef}
             type="text"
-            placeholder="Paste a link"
-            className="flex-1 bg-white p-1 text-sm outline-none"
+            placeholder="اللصق الرابط"
+            className="flex-1 p-1 text-xs text-right bg-white outline-none"
             defaultValue={editor.getAttributes("link").href || ""}
           />
           {editor.getAttributes("link").href ? (
             <button
-              className="flex items-center rounded-sm p-1 text-red-600 transition-all hover:bg-red-100 dark:hover:bg-red-800"
+              className="flex items-center p-1 text-red-600 transition-all rounded-sm hover:bg-red-100 dark:hover:bg-red-800"
               onClick={() => {
                 editor.chain().focus().unsetLink().run();
                 setIsOpen(false);
               }}
             >
-              <Trash className="h-4 w-4" />
+              <Trash className="w-4 h-4" />
             </button>
           ) : (
-            <button className="flex items-center rounded-sm p-1 text-stone-600 transition-all hover:bg-stone-100">
-              <Check className="h-4 w-4" />
+            <button className="flex items-center p-1 transition-all rounded-sm text-stone-600 hover:bg-stone-100">
+              <Check className="w-4 h-4" />
             </button>
           )}
         </form>

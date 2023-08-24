@@ -28,7 +28,7 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
 }) => {
   const items: BubbleMenuItem[] = [
     {
-      name: "Text",
+      name: "نص",
       icon: TextIcon,
       command: () =>
         editor.chain().focus().toggleNode("paragraph", "paragraph").run(),
@@ -39,43 +39,43 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
         !editor.isActive("orderedList"),
     },
     {
-      name: "Heading 1",
+      name: "عنوان رئيسي 1",
       icon: Heading1,
       command: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
       isActive: () => editor.isActive("heading", { level: 1 }),
     },
     {
-      name: "Heading 2",
+      name: "عنوان رئيسي 2",
       icon: Heading2,
       command: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
       isActive: () => editor.isActive("heading", { level: 2 }),
     },
     {
-      name: "Heading 3",
+      name: "عنوان رئيسي 3",
       icon: Heading3,
       command: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
       isActive: () => editor.isActive("heading", { level: 3 }),
     },
     {
-      name: "To-do List",
+      name: "قائمة المهام",
       icon: CheckSquare,
       command: () => editor.chain().focus().toggleTaskList().run(),
       isActive: () => editor.isActive("taskItem"),
     },
     {
-      name: "Bullet List",
+      name: "قائمة النقاط",
       icon: ListOrdered,
       command: () => editor.chain().focus().toggleBulletList().run(),
       isActive: () => editor.isActive("bulletList"),
     },
     {
-      name: "Numbered List",
+      name: "قائمة الارقام",
       icon: ListOrdered,
       command: () => editor.chain().focus().toggleOrderedList().run(),
       isActive: () => editor.isActive("orderedList"),
     },
     {
-      name: "Quote",
+      name: "اقتباس",
       icon: TextQuote,
       command: () =>
         editor
@@ -87,7 +87,7 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
       isActive: () => editor.isActive("blockquote"),
     },
     {
-      name: "Code",
+      name: "مربع الاكواد",
       icon: Code,
       command: () => editor.chain().focus().toggleCodeBlock().run(),
       isActive: () => editor.isActive("codeBlock"),
@@ -117,9 +117,10 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
                 item.command();
                 setIsOpen(false);
               }}
-              className="flex items-center justify-between px-2 py-1 text-sm rounded-sm text-stone-600 hover:bg-stone-100"
+              className="flex flex-row-reverse items-center justify-between px-2 py-1 text-sm rounded-sm text-stone-600 hover:bg-stone-100"
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex flex-row-reverse items-center gap-x-2">
+
                 <div className="p-1 border rounded-sm border-stone-200">
                   <item.icon className="w-3 h-3" />
                 </div>
